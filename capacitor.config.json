@@ -1,9 +1,9 @@
 {
-  "appId": "com.gramtirri.app",
-  "appName": "Gram Tirri",
-  "webDir": "www",
+  "appId": "com.tirri.grampanchayat",
+  "appName": "Tirri Portal",
+  "webDir": ".",
   "bundledWebRuntime": false,
   "server": {
-    "url": "https://grampanchayttirri.fnet.eu.cc/"
+    "cleartext": true
   }
 }
