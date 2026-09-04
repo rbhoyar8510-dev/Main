@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -27,13 +27,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Web
-        run: npm run build
-
-      - name: Sync Android
+      - name: Sync Capacitor Android
         run: npx cap sync android
 
-      - name: Build APK
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
