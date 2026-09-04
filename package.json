@@ -1,29 +1,19 @@
 {
-  "name": "tirri",
+  "name": "tirri-portal",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Grampanchayat Portal Mobile App",
+  "main": "index.php",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cap": "cap",
+    "sync": "cap sync android",
+    "open": "cap open android",
+    "build": "cap copy android"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rbhoyar8510-dev/Tirri.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/rbhoyar8510-dev/Tirri/issues"
-  },
-  "homepage": "https://github.com/rbhoyar8510-dev/Tirri#readme",
   "dependencies": {
-    "@capacitor/android": "^8.5.1",
-    "@capacitor/cli": "^8.5.1",
-    "@capacitor/core": "^8.5.1"
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
   },
   "devDependencies": {
-    "@capacitor/assets": "^3.0.5"
+    "@capacitor/cli": "^6.0.0"
   }
 }
