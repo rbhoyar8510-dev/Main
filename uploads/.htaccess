@@ -1,0 +1,5 @@
+# Block direct public access to uploaded documents.
+# Documents are served only through admin/view_document.php after an admin-login check.
+Require all denied
+Order deny,allow
+Deny from all

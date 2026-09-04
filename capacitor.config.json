@@ -1,0 +1,9 @@
+{
+  "appId": "com.gramtirri.app",
+  "appName": "Gram Tirri",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://grampanchayttirri.fnet.eu.cc/"
+  }
+}

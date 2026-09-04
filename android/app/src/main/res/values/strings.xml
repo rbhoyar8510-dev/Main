@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gram Tirri</string>
+    <string name="title_activity_main">Gram Tirri</string>
+    <string name="package_name">com.gramtirri.app</string>
+    <string name="custom_url_scheme">com.gramtirri.app</string>
+</resources>
