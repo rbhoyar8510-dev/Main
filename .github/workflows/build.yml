@@ -2,41 +2,54 @@ name: Build APK
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
+          cache: 'npm'
 
-      - uses: actions/setup-java@v5
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 21
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Install Dependencies
-        run: npm install
-
-      - name: Fix Capacitor Permission
-        run: chmod +x node_modules/.bin/cap
+        run: npm ci || npm install
 
       - name: Sync Android
-        run: ./node_modules/.bin/cap sync android
+        run: npx cap sync android
 
-      - name: Build APK
+      - name: Make Gradle Executable
+        run: |
+          if [ -f android/gradlew ]; then
+            chmod +x android/gradlew
+          fi
+
+      - name: Build Android APK
         run: |
           cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          name: Tirri-APK
+          name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          
