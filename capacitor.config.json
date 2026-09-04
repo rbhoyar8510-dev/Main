@@ -1,8 +1,7 @@
 {
   "appId": "com.tirri.grampanchayat",
   "appName": "Tirri Portal",
-  "webDir": ".",
-  "bundledWebRuntime": false,
+  "webDir": "www",
   "server": {
     "cleartext": true
   }
