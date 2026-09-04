@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -31,7 +30,19 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Dependencies
-        run: npm ci || npm install
+        run: npm install
+
+      - name: Prepare Web Assets
+        run: |
+          mkdir -p www
+          # Root ke web assets aur php/html files www me copy karein
+          cp -r assets www/ 2>/dev/null || true
+          cp -r includes www/ 2>/dev/null || true
+          cp *.php www/ 2>/dev/null || true
+          # Agar index.html nahi hai to dummy index.html banayein taaki Capacitor sync pass ho jaye
+          if [ ! -f www/index.html ]; then
+            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=index.php"></head><body>Loading...</body></html>' > www/index.html
+          fi
 
       - name: Sync Android
         run: npx cap sync android
@@ -52,4 +63,3 @@ jobs:
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
-          
